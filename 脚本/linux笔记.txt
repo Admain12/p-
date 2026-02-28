@@ -1,0 +1,73 @@
+回收站机制：
+  linux上先在终端运行mkdir -p ~/ .trash 创建回收站
+然后在vim上编辑~/ .bashrc文件
+  文件末尾添加：
+                         alias rm=del
+                         del()
+                         {
+                           mv $@ ~/ .trash/
+                         }  
+                         cleartrash()
+                         {
+                           read -p "clear sure?[Input ‘y' or 'Y' to confirm.&& Input 'n' to cancel.]" confirm
+                           [ $confirm == 'y' ] | | [ $confirm == 'Y'  ] && /bin/rm -rf ~/ .trash/*
+                         } 
+保存修改退出运行source ~/ .bashrc
+定期执行cleartrash清空回收站
+
+mkdir -p ~/.trash
+#在家目录下创建一个.trash文件夹（隐藏文件，ls -a查看）
+alias rm=del 
+#使用别名del代替rm
+del
+#函数del，作用：将rm命令修改为mv命令
+{
+  mv $@ ~/.trash/
+  #函数cleardel,作用：清空回收站.trash文件夹，y或Y表示，n表示取消
+}
+cleardel()
+{
+   read -p "clear sure?[Input 'y' or 'Y' to confirm. && Input 'n' to cancel.]" confirm
+   [ $
+}
+
+解决rm -rf /*
+ cd /bin
+mv rm rm1
+/
+touch rm
+vim rm
+/===========rm内容：
+#!/bin/bash
+#rm
+if echo "$1" |grep \-;then
+   opation=“$1"
+    shift
+fi
+
+mkdir -p /.trash_all_users/.rm_filename.txt
+for i in "$@”
+do 
+   time='date +%m-%d_%H-%M-%S'
+   mv"$i" /.trash_all_users/"$i"_"$time"
+   echo "$i"_"$time",'pwd'"/$i" >>/.trash_all_users/.rm_filename.txt
+done;
+=========================== */
+
+在建一个unrm 用于恢复
+/*============== unrm 内容如下：
+#!/bin/bash
+#/bin/unrm
+file="/.trash_all_users/.rm_filename.txt"
+for i in 'cat$file ',do
+   mv 'echo "/.trash_all_users/$i"|tr","""'
+  done
+:>$file
+===================    */
+
+chmod 755 rm
+chmod 755 unrm
+chmod 777 /.trash_all_users
+
+
+

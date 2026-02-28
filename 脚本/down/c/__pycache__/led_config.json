@@ -1,0 +1,7 @@
+{
+  "LEDMode": 1,
+  "LEDSpeed": 1,
+  "led_color": "#ff0000",
+  "led_brightness": 100,
+  "theme": "light"
+}
